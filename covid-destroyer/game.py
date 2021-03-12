@@ -1,10 +1,15 @@
+# 3rd Party Imports:
 import pygame
+
+# Internal Imports:
+from utils import load_sprite
 
 
 class COVID:
     def __init__(self):
         self._init_pygame()
         self.screen = pygame.display.set_mode((800, 600))
+        self.background = load_sprite("black", False)
 
     def main_loop(self):
         while True:
@@ -27,5 +32,5 @@ class COVID:
         pass
 
     def _draw(self):
-        self.screen.fill((0, 0, 225))
+        self.screen.blit(self.background, (0, 0))
         pygame.display.flip()
