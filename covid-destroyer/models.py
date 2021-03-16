@@ -83,11 +83,13 @@ class Asteroid(GameObject):
 
     def split(self):
         if self.size > 1:
+            # Change range to adjust number of COVID spawned upon
             for _ in range(2):
                 asteroid = Asteroid(
                     self.position, self.create_asteroid_callback, self.size - 1
                 )
                 self.create_asteroid_callback(asteroid)
+                
 
 
 class Bullet(GameObject):

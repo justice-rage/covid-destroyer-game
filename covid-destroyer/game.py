@@ -12,7 +12,7 @@ class SpaceRocks:
         # Adjust Screen Size
         self.screen = pygame.display.set_mode((800, 600))
         # Customize Game Background
-        self.background = load_sprite("space", False)
+        self.background = load_sprite("industrial-background-test", False)
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 64)
         self.message = ""
