@@ -22,7 +22,7 @@ class SpaceRocks:
         # Adjust player starting position: Spaceship((x, y))
         # Center of screen: (400, 300)
         # Far left center of screen: (20, 300)
-        self.spaceship = Spaceship((20, 300), self.bullets.append)
+        self.spaceship = Spaceship((100, 490), self.bullets.append)
 
         for _ in range(6):
             while True:
@@ -90,6 +90,10 @@ class SpaceRocks:
         for bullet in self.bullets[:]:
             if not self.screen.get_rect().collidepoint(bullet.position):
                 self.bullets.remove(bullet)
+
+        for asteroid in self.asteroids[:]:
+            if not self.screen.get_rect().collidepoint(asteroid.position):
+                self.asteroids.remove(asteroid)
 
         if not self.asteroids and self.spaceship:
             self.message = "WINNER"

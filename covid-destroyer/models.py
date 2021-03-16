@@ -39,7 +39,7 @@ class Spaceship(GameObject):
         # Make a copy of the original UP vector
         self.direction = Vector2(LEFT_TO_RIGHT)
 
-        super().__init__(position, load_sprite("disinfectorgod"), Vector2(0))
+        super().__init__(position, load_sprite("disinfector"), Vector2(0))
 
     def rotate(self, clockwise=True):
         sign = 1 if clockwise else -1
@@ -74,11 +74,11 @@ class Asteroid(GameObject):
             1: 0.25,
         }
         scale = size_to_scale[size]
-        sprite = rotozoom(load_sprite("covidgod"), 0, scale)
+        sprite = rotozoom(load_sprite("happy-covid"), 0, scale)
 
         super().__init__(
             # Adjust Possible Asteroid Velocity Range: get_random_velocity(x, y)
-            position, sprite, get_random_velocity(0, 0) # (1, 3)
+            position, sprite, get_random_velocity(1, 3) # (1, 3)
         )
 
     def split(self):
@@ -89,8 +89,10 @@ class Asteroid(GameObject):
                     self.position, self.create_asteroid_callback, self.size - 1
                 )
                 self.create_asteroid_callback(asteroid)
-                
 
+    def move(self, surface):
+        self.position = self.position + self.velocity
+                
 
 class Bullet(GameObject):
     def __init__(self, position, velocity):
