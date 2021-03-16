@@ -9,7 +9,9 @@ class SpaceRocks:
 
     def __init__(self):
         self._init_pygame()
+        # Adjust Screen Size
         self.screen = pygame.display.set_mode((800, 600))
+        # Customize Game Background
         self.background = load_sprite("space", False)
         self.clock = pygame.time.Clock()
         self.font = pygame.font.Font(None, 64)
@@ -17,7 +19,10 @@ class SpaceRocks:
 
         self.asteroids = []
         self.bullets = []
-        self.spaceship = Spaceship((400, 300), self.bullets.append)
+        # Adjust player starting position: Spaceship((x, y))
+        # Center of screen: (400, 300)
+        # Far left center of screen: (20, 300)
+        self.spaceship = Spaceship((20, 300), self.bullets.append)
 
         for _ in range(6):
             while True:
@@ -38,7 +43,7 @@ class SpaceRocks:
 
     def _init_pygame(self):
         pygame.init()
-        pygame.display.set_caption("Space Rocks")
+        pygame.display.set_caption("COVID Destroyer")
 
     def _handle_input(self):
         for event in pygame.event.get():
@@ -71,7 +76,7 @@ class SpaceRocks:
             for asteroid in self.asteroids:
                 if asteroid.collides_with(self.spaceship):
                     self.spaceship = None
-                    self.message = "You lost MOTHERFUCKER!"
+                    self.message = "GAME OVER"
                     break
 
         for bullet in self.bullets[:]:
@@ -87,7 +92,7 @@ class SpaceRocks:
                 self.bullets.remove(bullet)
 
         if not self.asteroids and self.spaceship:
-            self.message = "You're a winner. :)"
+            self.message = "WINNER"
 
     def _draw(self):
         self.screen.blit(self.background, (0, 0))
