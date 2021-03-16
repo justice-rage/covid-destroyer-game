@@ -3,7 +3,9 @@ from pygame.transform import rotozoom
 
 from utils import get_random_velocity, load_sound, load_sprite, wrap_position
 
-UP = Vector2(0, -1)
+# Adjust Projectile Origin/Direction:
+# UP = Vector2(0, -2)
+RIGHT = Vector2(1, 0)
 
 
 class GameObject:
@@ -34,7 +36,7 @@ class Spaceship(GameObject):
         self.create_bullet_callback = create_bullet_callback
         self.blaster_sound = load_sound("blaster")
         # Make a copy of the original UP vector
-        self.direction = Vector2(UP)
+        self.direction = Vector2(RIGHT)
 
         super().__init__(position, load_sprite("disinfectorgod"), Vector2(0))
 
@@ -47,7 +49,7 @@ class Spaceship(GameObject):
         self.velocity += self.direction * self.ACCELERATION
 
     def draw(self, surface):
-        angle = self.direction.angle_to(UP)
+        angle = self.direction.angle_to(RIGHT)
         rotated_surface = rotozoom(self.sprite, angle, 1.0)
         rotated_surface_size = Vector2(rotated_surface.get_size())
         blit_position = self.position - rotated_surface_size * 0.5
