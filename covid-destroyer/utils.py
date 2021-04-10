@@ -15,11 +15,17 @@ def load_sprite(name, with_alpha=True):
     else:
         return loaded_sprite.convert()
 
-
+# Logic allows objects to leve screen and appear on opposite side
 def wrap_position(position, surface):
     x, y = position
     w, h = surface.get_size()
     return Vector2(x % w, y % h)
+
+# Logic makes objects bounce off top and bottom of screen
+# def bounce_position(position, surface):
+#     x, y = position
+#     w, h = surface.get_size()
+#     return Vector2(x % w, y % h)
 
 
 def get_random_position(surface):

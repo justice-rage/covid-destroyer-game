@@ -24,6 +24,7 @@ class SpaceRocks:
         # Far left center of screen: (20, 300)
         self.spaceship = Spaceship((100, 490), self.bullets.append)
 
+        # Adjust number fo initial spawned asteroids: for _ in range(x)
         for _ in range(6):
             while True:
                 position = get_random_position(self.screen)
@@ -86,15 +87,22 @@ class SpaceRocks:
                     self.bullets.remove(bullet)
                     asteroid.split()
                     break
-
+        
+        # Bullets automatically destroyed and don't return when screen is left:
         for bullet in self.bullets[:]:
             if not self.screen.get_rect().collidepoint(bullet.position):
                 self.bullets.remove(bullet)
 
+        # Asteroids automatically destroyed and don't return when screen is left:
         for asteroid in self.asteroids[:]:
             if not self.screen.get_rect().collidepoint(asteroid.position):
                 self.asteroids.remove(asteroid)
 
+        # Logic dictating enemy sprites bounce off top and bottom screen
+        # if asteroid.bottom >= HEIGHT or asteroid.top <= 0:
+        #     asteroid.direction = dx, -dy
+
+        # Game message if all enemy sprites destroyed
         if not self.asteroids and self.spaceship:
             self.message = "WINNER"
 
